@@ -1,7 +1,8 @@
-from starlette.responses import JSONResponse
+from fastapi import Request
+from fastapi.responses import JSONResponse
 
 from src.domain.exceptions.user_not_found_exception import UserNotFoundError
-from fastapi import Request
+
 
 async def user_not_found_handler(request: Request, ex: UserNotFoundError):
     return JSONResponse(

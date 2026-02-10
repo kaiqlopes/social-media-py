@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 
 from src.api.exception_handler import user_not_found_handler
+from src.domain.exceptions.user_not_found_exception import UserNotFoundError
 from src.api.routers.user_router import router as user_router
 
-from src.domain.exceptions.user_not_found_exception import UserNotFoundError
 
 def create_app() -> FastAPI:
     app = FastAPI()

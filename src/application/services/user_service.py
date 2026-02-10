@@ -11,6 +11,6 @@ class UserService:
         user = self._user_repository.get_user_by_id(user_id)
 
         if user is None:
-            raise UserNotFoundError(f"User not found")
+            raise UserNotFoundError("User not found")
 
         return UserSchema.from_entity(user)
