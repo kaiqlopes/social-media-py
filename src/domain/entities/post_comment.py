@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class Comment:
+class PostComment:
     id: int
     text: str
     create_at: datetime

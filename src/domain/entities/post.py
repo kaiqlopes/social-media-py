@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from src.domain.entities.comment import Comment
+    from src.domain.entities.post_comment import PostComment
     from src.domain.entities.user import User
 
 
@@ -16,4 +16,4 @@ class Post:
     text: str
     image_url: str
     comment_ids: set[int] = field(default_factory=set)
-    comments: list["Comment"] = field(default_factory=list)
+    comments: list["PostComment"] = field(default_factory=list)
