@@ -1,14 +1,14 @@
 from pydantic import BaseModel
 
-from src.domain.entities.user import User
+from src.infrastructure.db.models.user_model import UserModel
 
-class UserSchema(BaseModel):
+class UserResponseSchema(BaseModel):
     id: int
     name: str
     email: str
 
     @classmethod
-    def from_entity(cls, user: User) -> "UserSchema":
+    def from_entity(cls, user: UserModel) -> "UserResponseSchema":
         return cls(
             id=user.id,
             name=user.name,

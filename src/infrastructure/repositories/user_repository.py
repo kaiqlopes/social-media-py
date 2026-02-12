@@ -1,14 +1,19 @@
-from src.domain.entities.user import User
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+from src.infrastructure.db.models.user_model import UserModel
 
 class UserRepository:
-    def __init__ (self):
-        self.users: list[User] = [
-            User(id=1, name="Kaique Lopes", email="kaiquelopes@python.com"),
-            User(id=2, name="Gabriela Lopes", email="gabrielalopes@python.com"),
-            User(id=3, name="Aurora Lopes", email="aurorinhalopes@python.com"),
-            User(id=4, name="Fulano Python", email="fulanopython@python.com"),
-            User(id=5, name="Sem ideias", email="comideias@python.com"),
-        ]
+    def __init__(self, session: Session):
+        self.session = session
 
-    def get_user_by_id(self, user_id: int) -> User | None:
-        return next((user for user in self.users if user.id == user_id), None)
+    def create(self, user: UserModel) -> UserModel:
+        self.session.add(user)
+        self.session.commit()
+
+        return user
+
+    def get_by_id(self, id: int) -> UserModel | None:
+        query = select(UserModel).where(UserModel.id == id)
+        return self.session.execute(query).scalar_one_or_none()
+    
